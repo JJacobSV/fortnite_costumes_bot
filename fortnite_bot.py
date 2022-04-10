@@ -73,7 +73,6 @@ def pickup_info():
     question = ("Please enter your phone number ")
     customer_details['phone'] = not_blank(question)
     #print (customer_details['phone'])
-    print(customer_details)
 
 
 # Delivery function - name, address and phone, free for 5 or more costumes otherwise $9 fee
@@ -97,7 +96,7 @@ def delivery_info():
     question = ("Please enter your suburb ")
     customer_details['suburb'] = not_blank(question)
     print (customer_details['suburb'])
-    print (customer_details)
+    
 
 
 # Costume Menu
