@@ -25,12 +25,12 @@ def welcome():
 
 
 
-# Delivery function - name, address and phone
+# Delivery function - name, address and phone, free for 5 or more costumes otherwise $9 fee
 
 
 
 
-# Choose total number of costumes - max 5
+# Choose total number of costumes 
 
 
 
