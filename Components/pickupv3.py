@@ -23,3 +23,5 @@ while not valid:
         break
     else:
         print("Sorry this cannot be left blank")
+
+print (customer_details)
