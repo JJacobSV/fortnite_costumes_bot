@@ -7,15 +7,15 @@ costume_names = ['Eon', 'Skull Ranger', 'Double Helix', 'Galaxy', 'Royale Bomber
 costume_prices = [10.69, 10.69, 10.69, 10.69, 10.69, 10.69, 15.50, 15.50, 15.50, 15.50, 19.99, 19.99, 19.99]
 
 # List to store ordered costumes
-order_list = []
+order_list =[]
 # List to store costume prices
-order_cost = []
+order_cost =[]
 
-
+# List to store order cost
 def menu():
-    number_costumes = 13
+    number_costume = 13
 
-    for count in range (number_costumes):
+    for count in range(number_costume):
         print("{} {} ${:.2f}"  .format(count+1,costume_names[count],costume_prices[count]))
 
 menu()
@@ -23,6 +23,7 @@ menu()
 
 # Ask for total number of pizza for order
 num_costumes = 0
+
 
 while True:  
     try:
@@ -35,16 +36,23 @@ while True:
         print ("That is not a valid number")
         print ("Please enter a number between 1 and 15")
 
-print(num_costumes)
+
 
 # Choose costume from menu
-print ("Please choose the costume you would like to order by entering the number of the costume from the menu ")
 for item in range(num_costumes):
     while num_costumes > 0:
-        costume_ordered = int(input())
+        while True:  
+            try:
+                costume_ordered = int(input("Please choose the costume you would like to order by entering the number of the costume from the menu "))
+                if costume_ordered >= 1 and costume_ordered <= 13:
+                    break
+                else:
+                    print("Your costume order must be between 1 and 13")
+            except ValueError:
+                print ("That is not a valid number")
+                print ("Please enter a number between 1 and 13")
+        costume_ordered = costume_ordered -1
         order_list.append(costume_names[costume_ordered])
         order_cost.append(costume_prices[costume_ordered])
-        num_costumes = num_costumes-1
-
-print(order_list)
-print(order_cost)
+        print("{} ${:.2f}"  .format(costume_names[costume_ordered],costume_prices[costume_ordered]))
+        num_costumes = num_costumes -1
