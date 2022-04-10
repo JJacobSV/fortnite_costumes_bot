@@ -4,10 +4,11 @@ costume_names = ['Eon', 'Skull Ranger', 'Double Helix', 'Galaxy', 'Royale Bomber
 
 costume_prices = [10.69, 10.69, 10.69, 10.69, 10.69, 10.69, 15.50, 15.50, 15.50, 15.50, 19.99, 19.99, 19.99]
 
-number_costumes = 13
 
-#print("How many costumes would you like to order?")
-#num_costume = int(input())
+def menu():
+    number_costumes = 13
 
-for count in range (number_costumes):
-    print (count,costume_names[count],costume_prices[count])
+    for count in range (number_costumes):
+        print("{} {} ${:.2f}"  .format(count+1,costume_names[count],costume_prices[count]))
+
+menu()
