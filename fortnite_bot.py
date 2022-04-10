@@ -5,6 +5,18 @@ from random import randint
 #List of random names
 names = ["Banana", "Alvin", "Hannah", "Marquis", "Emily","Christy", "Carlos", "Theodore", "Simon", "Shaniqa"]
 
+# Customer details dictionary
+customer_details = {}
+
+# Validates inputs to check of theu are blank
+def not_blank(question):
+    valid = False    
+    while not valid:
+        response = input(question)
+        if response != "":
+            return response.title()
+        else:
+            print("This cannot be left blank")
 
 # Welcome message with random name
 def welcome():
@@ -16,20 +28,20 @@ def welcome():
 
 
 # Menu for pickup or delivery
-def clickandcollect():
+def ordertype():
     print ("Is your order for Click and Collect or would you like it to be Delivered")
     print ("For Click and Collect enter 1")
     print ("For Delivery enter 2")
 
     while True:
         try:
-            pickup = int(input("Please enter a number "))
-            if pickup >= 1 and pickup <= 2:
-                if pickup == 1:
+            delivery = int(input("Please enter a number "))
+            if delivery >= 1 and delivery <= 2:
+                if delivery == 1:
                     print ("Click and Collect")
+                    pickup()
                     break
-
-                elif pickup == 2:
+                elif delivery == 2:
                     print ("Delivery")
                     break
             else:
@@ -40,7 +52,15 @@ def clickandcollect():
 
 
 # Pick up information - name and phone number
+def pickup():
+    question = ("Please enter your name ")
+    customer_details['name'] = not_blank(question)
+    #print (customer_details['name'])
 
+    question = ("Please enter your phone number ")
+    customer_details['phone'] = not_blank(question)
+    #print (customer_details['phone'])
+    print(customer_details)
 
 
 
@@ -75,6 +95,6 @@ def clickandcollect():
 # Main Function
 def main():
     welcome()
-    clickandcollect()
+    ordertype()
 
 main()
