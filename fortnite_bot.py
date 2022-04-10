@@ -44,10 +44,11 @@ def ordertype():
             if delivery >= 1 and delivery <= 2:
                 if delivery == 1:
                     print ("Click and Collect")
-                    pickup()
+                    pickup_info()
                     break
                 elif delivery == 2:
                     print ("Delivery")
+                    delivery_info()
                     break
             else:
                 print ("The number must be 1 or 2")
@@ -57,7 +58,7 @@ def ordertype():
 
 
 # Pick up information - name and phone number
-def pickup():
+def pickup_info():
     question = ("Please enter your name ")
     customer_details['name'] = not_blank(question)
     #print (customer_details['name'])
@@ -68,10 +69,28 @@ def pickup():
     print(customer_details)
 
 
-
 # Delivery function - name, address and phone, free for 5 or more costumes otherwise $9 fee
+def delivery_info():
+    question = ("Please enter your name ")
+    customer_details['name'] = not_blank(question)
+    #print (customer_details['name'])
 
+    question = ("Please enter your phone number ")
+    customer_details['phone'] = not_blank(question)
+    #print (customer_details['phone'])
 
+    question = ("Please enter your House number ")
+    customer_details['house'] = not_blank(question)
+    print (customer_details['house'])
+
+    question = ("Please enter your street name ")
+    customer_details['street'] = not_blank(question)
+    print (customer_details['street'])
+
+    question = ("Please enter your suburb ")
+    customer_details['suburb'] = not_blank(question)
+    print (customer_details['suburb'])
+    print (customer_details)
 
 
 # Choose total number of costumes 
