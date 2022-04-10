@@ -5,6 +5,7 @@ from random import randint
 #List of random names
 names = ["Banana", "Alvin", "Hannah", "Marquis", "Emily","Christy", "Carlos", "Theodore", "Simon", "Shaniqa"]
 
+
 # Welcome message with random name
 def welcome():
     num = randint(0,9) 
@@ -15,9 +16,27 @@ def welcome():
 
 
 # Menu for pickup or delivery
+def clickandcollect():
+    print ("Is your order for Click and Collect or would you like it to be Delivered")
+    print ("For Click and Collect enter 1")
+    print ("For Delivery enter 2")
 
+    while True:
+        try:
+            pickup = int(input("Please enter a number "))
+            if pickup >= 1 and pickup <= 2:
+                if pickup == 1:
+                    print ("Click and Collect")
+                    break
 
-
+                elif pickup == 2:
+                    print ("Delivery")
+                    break
+            else:
+                print ("The number must be 1 or 2")
+        except ValueError:
+            print ("That is not a valid number")
+            print ("Please enter 1 or 2")
 
 
 # Pick up information - name and phone number
@@ -56,5 +75,6 @@ def welcome():
 # Main Function
 def main():
     welcome()
+    clickandcollect()
 
 main()
