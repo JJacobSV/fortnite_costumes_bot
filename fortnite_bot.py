@@ -1,4 +1,9 @@
 # Fornite Costume Bot
+# 10/04/22
+# Bugs - Phone number input allows letters
+#      - Name input allows numbers
+
+
 import random
 from random import randint
 
