@@ -26,7 +26,7 @@ order_cost =[]
 # Customer details dictionary
 customer_details = {}
 
-# Validates inputs to check of theu are blank
+# Validates inputs to check of they are blank
 def not_blank(question):
     valid = False    
     while not valid:
