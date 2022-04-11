@@ -46,49 +46,53 @@ def welcome():
 
 # Menu for pickup or delivery
 def ordertype():
+    del_pick = ""
     print ("Is your order for Click and Collect or would you like it to be Delivered")
     print ("For Click and Collect enter 1")
     print ("For Delivery enter 2")
-
     while True:
         try:
             delivery = int(input("Please enter a number "))
             if delivery >= 1 and delivery <= 2:
                 if delivery == 1:
                     print ("Click and Collect")
+                    del_pick = "Click and Collect"
                     pickup_info()
                     break
                 elif delivery == 2:
                     print ("Delivery")
                     delivery_info()
+                    del_pick = "Delivery"
                     break
             else:
                 print ("The number must be 1 or 2")
         except ValueError:
             print ("That is not a valid number")
             print ("Please enter 1 or 2")
+    return del_pick
 
 
 # Pick up information - name and phone number
 def pickup_info():
     question = ("Please enter your name ")
     customer_details['name'] = not_blank(question)
-    #print (customer_details['name'])
+    print (customer_details['name'])
 
     question = ("Please enter your phone number ")
     customer_details['phone'] = not_blank(question)
-    #print (customer_details['phone'])
+    print (customer_details['phone'])
+
 
 
 # Delivery function - name, address and phone, free for 5 or more costumes otherwise $9 fee
 def delivery_info():
     question = ("Please enter your name ")
     customer_details['name'] = not_blank(question)
-    #print (customer_details['name'])
+    print (customer_details['name'])
 
     question = ("Please enter your phone number ")
     customer_details['phone'] = not_blank(question)
-    #print (customer_details['phone'])
+    print (customer_details['phone'])
 
     question = ("Please enter your House number ")
     customer_details['house'] = not_blank(question)
@@ -107,14 +111,13 @@ def delivery_info():
 # Costume Menu
 def menu():
     number_costumes = 13
-
     for count in range (number_costumes):
         print("{} {} ${:.2f}"  .format(count+1,costume_names[count],costume_prices[count]))
 
-
+# Costume order - from menu - Print each costume ordered with cost
 # Choose total number of costumes - Max 15
 def order_costume():
-    # Ask for total number of pizza for order
+    # Ask for total number of costumes for order
     num_costumes = 0
     while True:  
         try:
@@ -146,14 +149,26 @@ def order_costume():
             num_costumes = num_costumes -1
 
 
-
-# Costume order - from menu - Print each costume ordered with cost
-
-
-
-
 # Print order out - including if order is del or pick up and names and price of each pizza - total cost including any delivery charge 
-
+def print_order(del_pick):
+    print()
+    total_cost = sum(order_cost)
+    print("Customer Details")
+    if del_pick == "Click and Collect":
+        print("Your Order is for Click and Collect")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']}")
+    elif del_pick == "Delivery":
+        print("Your Order is for Delivery")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+    print()
+    print("Order Details")
+    count = 0
+    for item in order_list:
+        print("Ordered: {} Cost ${:.2f}"  .format(item, order_cost[count]))
+        count = count+1
+    print()
+    print("Total Order Cost")
+    print(f"${total_cost:.2f}")
 
 # Ability to cancel or proceed with order
 
@@ -165,8 +180,9 @@ def order_costume():
 # Main Function
 def main():
     welcome()
-    ordertype()
+    del_pick = ordertype()
     menu()
     order_costume()
+    print_order(del_pick)
 
 main()
