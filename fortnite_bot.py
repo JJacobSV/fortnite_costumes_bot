@@ -161,14 +161,25 @@ def print_order(del_pick):
         print("Your Order is for Delivery")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
     print()
+    # Turn into function later so that code is not repeated so much
     print("Order Details")
     count = 0
     for item in order_list:
         print("Ordered: {} Cost ${:.2f}"  .format(item, order_cost[count]))
         count = count+1
     print()
+    if del_pick == "Delivery":
+        if len(order_list) >= 5:
+            print("Your order will be delivered for free")
+        elif len(order_list) <= 5:
+            print("There is an additional $9.00 delivery charge")
+            total_cost = total_cost + 9
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
+    if del_pick == "Click and Collect":
+        print ("Thank you for your order, we'll let you know whe its ready")
+    elif del_pick == "Delivery":
+        print("Thank you for your order, it will be delivered soon")
 
 # Ability to cancel or proceed with order
 
