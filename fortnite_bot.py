@@ -12,6 +12,8 @@ from random import randint
 # Constants
 LOW = 1
 HIGH = 2
+PH_LOW = 7
+PH_HIGH = 10
 
 # List of random names
 names = ["Banana", "Alvin", "Hannah", "Marquis", "Emily",
@@ -72,6 +74,22 @@ def val_int(low, high, question):
             print (f"Please enter a number between {low} and {high}")
 
 
+def check_phone(question, PH_LOW, PH_HIGH):
+    while True:
+        try:
+            num = int(input(question))
+            test_num = num
+            count = 0
+            while test_num > 0:
+                test_num = test_num//10
+                count = count + 1
+            if count >= PH_LOW and count <= PH_HIGH:
+                return str(num)
+            else:
+                print("NZ Phone numbers have between 7 and 10 digits")
+        except ValueError:
+            print("Please enter a number ")
+
 # Welcome message with random name
 def welcome():
     num = randint(0, 9)
@@ -109,7 +127,7 @@ def pickup_info():
     print (customer_details['name'])
 
     question = ("Please enter your phone number ")
-    customer_details['phone'] = not_blank(question)
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     print (customer_details['phone'])
 
 
@@ -121,7 +139,7 @@ def delivery_info():
     print (customer_details['name'])
 
     question = ("Please enter your phone number ")
-    customer_details['phone'] = not_blank(question)
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)
     print (customer_details['phone'])
 
     question = ("Please enter your House number ")
