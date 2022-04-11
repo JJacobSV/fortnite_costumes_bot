@@ -5,40 +5,57 @@
 
 # Known Bugs
 # 11/04/22 - Final printout is not printing customer details correctly - Fixed
-            
 
 import sys
 import random
 from random import randint
+# Constants
+LOW = 1
+HIGH = 2
 
-#List of random names
-names = ["Banana", "Alvin", "Hannah", "Marquis", "Emily","Christy", "Carlos", "Theodore", "Simon", "Shaniqa"]
+# List of random names
+names = ["Banana", "Alvin", "Hannah", "Marquis", "Emily",
+         "Christy", "Carlos", "Theodore", "Simon", "Shaniqa"]
 
 # List of costume names
-costume_names = ['Eon', 'Skull Ranger', 'Double Helix', 'Galaxy', 'Royale Bomber', 'The Reaper',
-                 'Merry Marauder', 'Ginger Gunner', 'Black Knight', 'Purple Glow Skull Trooper', 
+costume_names = ['Eon', 'Skull Ranger', 'Double Helix', 'Galaxy',
+                 'Royale Bomber', 'The Reaper',
+                 'Merry Marauder', 'Ginger Gunner', 'Black Knight',
+                 'Purple Glow Skull Trooper',
                  'Renegade Raider', 'Aerial Assault Trooper', 'Recon Expert']
 
 # List of costume prices
-costume_prices = [10.69, 10.69, 10.69, 10.69, 10.69, 10.69, 15.50, 15.50, 15.50, 15.50, 19.99, 19.99, 19.99]
+costume_prices = [10.69, 10.69, 10.69, 10.69, 10.69, 10.69,
+                  15.50, 15.50, 15.50, 15.50, 19.99, 19.99, 19.99]
 
 # List to store ordered costumes
-order_list =[]
+order_list = []
 # List to store costume prices
-order_cost =[]
+order_cost = []
 
 # Customer details dictionary
 customer_details = {}
 
 # Validates inputs to check if they are blank
+
+
 def not_blank(question):
-    valid = False    
+    valid = False
     while not valid:
         response = input(question)
         if response != "":
             return response.title()
         else:
             print("This cannot be left blank")
+
+def check_string(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print("Input must only contain letters")
+        else:
+            return response.title()
 
 
 # Validates inputs to check if they are an integer
@@ -49,7 +66,7 @@ def val_int(low, high, question):
             if num >= low and num <= high:
                 return num
             else:
-                print (f"Pleas enter a number between {low} and {high}")
+                print (f"Please enter a number between {low} and {high}")
         except ValueError:
             print ("That is not a valid number")
             print (f"Please enter a number between {low} and {high}")
@@ -57,20 +74,20 @@ def val_int(low, high, question):
 
 # Welcome message with random name
 def welcome():
-    num = randint(0,9) 
+    num = randint(0, 9)
     name = (names[num])
     print("*** Welcome to Fortnite Battlepass skins ***")
-    print("*** My name is",name, "***")
-    print("*** I wil be here to help you order your FAVORITE Fortnite costumes ***")
+    print("*** My name is", name, "***")
+    print("*** I will be here to help you order "
+          "your FAVORITE Fortnite costumes ***")
 
 
 # Menu for pickup or delivery
 def ordertype():
     del_pick = ""
-    LOW = 1
-    HIGH = 2
     question = (f"Enter a number between {LOW} and {HIGH} ")
-    print ("Is your order for Click and Collect or would you like it to be Delivered")
+    print ("Is your order for Click and Collect "
+           "or would you like it to be Delivered")
     print ("For Click and Collect enter 1")
     print ("For Delivery enter 2")
     delivery = val_int(LOW, HIGH, question)
@@ -88,7 +105,7 @@ def ordertype():
 # Pick up information - name and phone number
 def pickup_info():
     question = ("Please enter your name ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     print (customer_details['name'])
 
     question = ("Please enter your phone number ")
@@ -96,11 +113,11 @@ def pickup_info():
     print (customer_details['phone'])
 
 
-
-# Delivery function - name, address and phone, free for 5 or more costumes otherwise $9 fee
+# Delivery function - name, address and phone
+# free for 5 or more costumes otherwise $9 fee
 def delivery_info():
     question = ("Please enter your name ")
-    customer_details['name'] = not_blank(question)
+    customer_details['name'] = check_string(question)
     print (customer_details['name'])
 
     question = ("Please enter your phone number ")
@@ -112,58 +129,66 @@ def delivery_info():
     print (customer_details['house'])
 
     question = ("Please enter your street name ")
-    customer_details['street'] = not_blank(question)
+    customer_details['street'] = check_string(question)
     print (customer_details['street'])
 
     question = ("Please enter your suburb ")
-    customer_details['suburb'] = not_blank(question)
+    customer_details['suburb'] = check_string(question)
     print (customer_details['suburb'])
-    
 
 
 # Costume Menu
 def menu():
     number_costumes = 13
-    for count in range (number_costumes):
-        print("{} {} ${:.2f}"  .format(count+1,costume_names[count],costume_prices[count]))
+    for count in range(number_costumes):
+        print("{} {} ${:.2f}"  .format(count+1, costume_names[count],
+              costume_prices[count]))
 
 # Costume order - from menu - Print each costume ordered with cost
 # Choose total number of costumes - Max 15
+
+
 def order_costume():
     # Ask for total number of costumes for order
     num_costumes = 0
-    LOW = 1
-    HIGH = 15
+    NUM_LOW = 1
+    NUM_HIGH = 15
     MENU_LOW = 1
     MENU_HIGH = 13
-    question = (f"Enter a number between {LOW} and {HIGH} ")
+    question = (f"Enter a number between {NUM_LOW} and {NUM_HIGH} ")
     print("How many costumes do you want to order? ")
-    num_costumes = val_int(LOW, HIGH, question)
+    num_costumes = val_int(NUM_LOW, NUM_HIGH, question)
     # Choose costume from menu
     for item in range(num_costumes):
         while num_costumes > 0:
-            print("Please choose the costume you would like to order by entering the"
-            "number of the costume from the menu ")
+            print("Please choose the costume you would like to"
+                  " order by entering the number of the costume from the menu ")
             question = (f"Enter a number between {MENU_LOW} and {MENU_HIGH} ")
             costume_ordered = val_int(MENU_LOW, MENU_HIGH, question)
-            costume_ordered = costume_ordered -1
+            costume_ordered = costume_ordered - 1
             order_list.append(costume_names[costume_ordered])
             order_cost.append(costume_prices[costume_ordered])
-            print("{} ${:.2f}"  .format(costume_names[costume_ordered],costume_prices[costume_ordered]))
-            num_costumes = num_costumes -1
+            print("{} ${:.2f}" .format(costume_names[costume_ordered],
+                  costume_prices[costume_ordered]))
+            num_costumes = num_costumes - 1
 
 
-# Print order out - including if order is del or pick up and names and price of each pizza - total cost including any delivery charge 
+# Print order out - including if order is del or pick up and names
+# and price of each pizza - total cost including any delivery charge
 def print_order(del_pick):
     print()
     total_cost = sum(order_cost)
     print("Customer Details")
     if del_pick == "Click and Collect":
         print("Your Order is for Click and Collect")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']}")
+        print(f"Customer Name: {customer_details['name']}"
+              f"\nCustomer Phone: {customer_details['phone']}")
     elif del_pick == "Delivery":
         print("Your Order is for Delivery")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+        print(f"Customer Name: {customer_details['name']}"
+              f"\nCustomer Phone: {customer_details['phone']}"
+              f"\nCustomer Address: {customer_details['house']} "
+              f"{customer_details['street']} {customer_details['suburb']}")
     print()
     # Turn into function later so that code is not repeated so much
     print("Order Details")
@@ -181,15 +206,13 @@ def print_order(del_pick):
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
     if del_pick == "Click and Collect":
-        print ("Thank you for your order, we'll let you know whe its ready")
+        print ("Thank you for your order, we'll let you know when its ready")
     elif del_pick == "Delivery":
         print("Thank you for your order, it will be delivered soon")
 
 
 # Ability to cancel or proceed with order
 def confirm_cancel():
-    LOW = 1
-    HIGH = 2
     question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Please confirm your order")
     print ("To confirm please enter 1")
@@ -208,8 +231,6 @@ def confirm_cancel():
 
 # Option for new order or to exit
 def new_exit():
-    LOW = 1
-    HIGH = 2
     question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Do you want to start another Order or Exit?")
     print ("To start another order enter 1")
