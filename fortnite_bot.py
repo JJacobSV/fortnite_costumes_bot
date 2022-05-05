@@ -50,6 +50,7 @@ def not_blank(question):
         else:
             print("This cannot be left blank")
 
+
 def check_string(question):
     while True:
         response = input(question)
@@ -89,6 +90,7 @@ def check_phone(question, PH_LOW, PH_HIGH):
                 print("NZ Phone numbers have between 7 and 10 digits")
         except ValueError:
             print("Please enter a number ")
+
 
 # Welcome message with random name
 def welcome():
@@ -179,8 +181,8 @@ def order_costume():
     # Choose costume from menu
     for item in range(num_costumes):
         while num_costumes > 0:
-            print("Please choose the costume you would like to"
-                  " order by entering the number of the costume from the menu ")
+            print("Please choose the costume you would like to "
+                  "order by entering the number of the costume from the menu ")
             question = (f"Enter a number between {MENU_LOW} and {MENU_HIGH} ")
             costume_ordered = val_int(MENU_LOW, MENU_HIGH, question)
             costume_ordered = costume_ordered - 1
