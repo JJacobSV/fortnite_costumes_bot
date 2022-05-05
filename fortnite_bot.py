@@ -96,6 +96,10 @@ def check_phone(question, PH_LOW, PH_HIGH):
 def welcome():
     num = randint(0, 9)
     name = (names[num])
+    print("********************************************")
+    print("********* Fortnite Battlpass Skins *********")
+    print("********************************************")
+    print("")
     print("*** Welcome to Fortnite Battlepass skins ***")
     print("*** My name is", name, "***")
     print("*** I will be here to help you order "
@@ -104,12 +108,13 @@ def welcome():
 
 # Menu for pickup or delivery
 def ordertype():
+    print ("")
     del_pick = ""
     question = (f"Enter a number between {LOW} and {HIGH} ")
     print ("Is your order for Click and Collect "
            "or would you like it to be Delivered")
     print ("For Click and Collect enter 1")
-    print ("For Delivery enter 2")
+    print ("For Delivery enter 2 (A $9 fee will be applied for less than 5 costumes ordered)")
     delivery = val_int(LOW, HIGH, question)
     if delivery == 1:
         print ("Click and Collect")
@@ -159,6 +164,7 @@ def delivery_info():
 
 # Costume Menu
 def menu():
+    print ("")
     number_costumes = 13
     for count in range(number_costumes):
         print("{} {} ${:.2f}"  .format(count+1, costume_names[count],
@@ -176,6 +182,7 @@ def order_costume():
     MENU_LOW = 1
     MENU_HIGH = 13
     question = (f"Enter a number between {NUM_LOW} and {NUM_HIGH} ")
+    print("")
     print("How many costumes do you want to order? ")
     num_costumes = val_int(NUM_LOW, NUM_HIGH, question)
     # Choose costume from menu
@@ -184,6 +191,7 @@ def order_costume():
             print("Please choose the costume you would like to "
                   "order by entering the number of the costume from the menu ")
             question = (f"Enter a number between {MENU_LOW} and {MENU_HIGH} ")
+            print("")
             costume_ordered = val_int(MENU_LOW, MENU_HIGH, question)
             costume_ordered = costume_ordered - 1
             order_list.append(costume_names[costume_ordered])
@@ -229,6 +237,7 @@ def print_order(del_pick):
         print ("Thank you for your order, we'll let you know when its ready")
     elif del_pick == "Delivery":
         print("Thank you for your order, it will be delivered soon")
+        print("")
 
 
 # Ability to cancel or proceed with order
@@ -237,6 +246,7 @@ def confirm_cancel():
     print ("Please confirm your order")
     print ("To confirm please enter 1")
     print ("To cancel please enter 2")
+    print ("")
     confirm = val_int(LOW, HIGH, question)
     if confirm == 1:
         print ("Your Order Has Been Confirmed")
@@ -252,6 +262,7 @@ def confirm_cancel():
 # Option for new order or to exit
 def new_exit():
     question = (f"Enter a number between {LOW} and {HIGH} ")
+    print ("")
     print ("Do you want to start another Order or Exit?")
     print ("To start another order enter 1")
     print ("To exit the BOT enter 2")
